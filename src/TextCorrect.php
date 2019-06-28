@@ -1,9 +1,6 @@
 <?php
 
-namespace Text;
-
-use Text\Util\ReflectionTypeHint;
-use Text\Util\UTF8;
+namespace pdima88\phpcorrectquery;
 
 /**
  * Automatic correction of the language for words in the text because of the wrong keyboard layout
@@ -38,7 +35,7 @@ use Text\Util\UTF8;
  *   Типичный пример алгоритма работы для поля ввода с автодополнением:
  *     1. Сделать выборку по исходному запросу;
  *     2. Если есть результат, возвратить его и исходный запрос;
- *     3. Иначе скорректировать исходный запрос через Text\Text_LangCorrect;
+ *     3. Иначе скорректировать исходный запрос через TextCorrect;
  *     4. Если исходный и скорректированный запрос совпадает, возвратить пустой результат и исходный запрос;
  *     5. Иначе сделать выборку по скорректированному запросу;
  *     6. Возвратить результат. Если результат не пустой, возвратить скорректированный запрос, иначе исходный.
@@ -51,7 +48,7 @@ use Text\Util\UTF8;
  * @author   Nasibullin Rinat
  * @version  1.4.3
  */
-class LangCorrect
+class TextCorrect
 {
     /**
      * Флаг для исправления ошибочно набранных букв в словах,
@@ -2798,9 +2795,6 @@ class LangCorrect
      */
     public function __construct(array $words_exceptions = null)
     {
-        if (!ReflectionTypeHint::isValid()) {
-            return false;
-        }
         #русский --> английский:
         $this->en_correct = '/(?: (?:' . $this->tt_f . ')
                                    (?: (?:' . $this->en_uniq . ') | (?:' . $this->en_sc . '){2} )
@@ -2844,9 +2838,6 @@ class LangCorrect
      */
     public function parse($s, $mode = self::SIMILAR_CHARS, array &$words = null)
     {
-        if (!ReflectionTypeHint::isValid()) {
-            return false;
-        }
         if (!is_string($s)) {
             return $s;
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Text\Util;
+namespace pdima88\phpcorrectquery;
 
 use Collator;
 

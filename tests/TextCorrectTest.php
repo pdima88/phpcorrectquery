@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Text\Tests;
+namespace pdima88\phpcorrectquery\tests;
 
 use PHPUnit\Framework\TestCase;
-use Text\LangCorrect;
+use pdima88\phpcorrectquery\TextCorrect;
 
 /**
  * @covers \Text\LangCorrect
  */
-class LangCorrectTest extends TestCase
+class TextCorrectTest extends TestCase
 {
     /**
      * @test
@@ -20,10 +20,10 @@ class LangCorrectTest extends TestCase
      * @param string $expected
      * @param int    $mode
      */
-    public function it_should_work(string $incorrect, string $expected, int $mode = LangCorrect::KEYBOARD_LAYOUT)
+    public function it_should_work(string $incorrect, string $expected, int $mode = TextCorrect::KEYBOARD_LAYOUT)
     {
-        $lang = new LangCorrect();
-        $result = $lang->parse($incorrect, LangCorrect::KEYBOARD_LAYOUT);
+        $lang = new TextCorrect();
+        $result = $lang->parse($incorrect, TextCorrect::KEYBOARD_LAYOUT);
 
         self::assertEquals($expected, $result);
     }

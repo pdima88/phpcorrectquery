@@ -1,15 +1,15 @@
 {
-    "name": "b1rdex/php-lang-correct",
+    "name": "pdima88/phpcorrectquery",
     "license": "MIT",
     "require": {},
     "autoload": {
         "psr-4": {
-            "Text\\": "src/"
+            "pdima88\\phpcorrectquery\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Text\\Tests\\": "tests"
+            "pdima88\\phpcorrectquery\\tests": "tests"
         }
     },
     "require-dev": {
