@@ -2864,6 +2864,37 @@ class TextCorrect
         return $s;
     }
 
+    const SWITCH_AUTO = 0;
+    const SWITCH_RU_EN = 1;
+    const SWITCH_EN_RU = 2;
+
+    public function switchKbLayout($s, $mode = self::SWITCH_AUTO) {
+        $kbTable = $this->table[1];
+        $kbRu = array_keys($kbTable);
+        $kbEn = array_values($kbTable);
+        if ($mode == self::SWITCH_RU_EN || $mode == self::SWITCH_AUTO) {
+            $ruEn = str_replace($kbRu, $kbEn, $s);
+        }
+        if ($mode == self::SWITCH_EN_RU || $mode == self::SWITCH_AUTO) {
+            $enRu = str_replace($kbEn, $kbRu, $s);
+        }
+        if ($mode == self::SWITCH_RU_EN) return $ruEn;
+        if ($mode == self::SWITCH_EN_RU) return $enRu;
+
+        $ruEnCheck = $this->parse($ruEn, self::KEYBOARD_LAYOUT);
+        $enRuCheck = $this->parse($enRu, self::KEYBOARD_LAYOUT);
+
+        $ruEnDiff = 0;
+        $enRuDiff = 0;
+        for ($i = 0; $i < strlen($s); $i++) {
+            if ($ruEnCheck[$i] != $ruEn[$i]) $ruEnDiff++;
+            if ($enRuCheck[$i] != $enRu[$i]) $enRuDiff++;
+        }
+        if ($ruEnDiff <= $enRuDiff) return $ruEn;
+        return $enRu;
+
+    }
+
     private function _parse1($s)
     {
         #заменяем слова из текста, минимальная длина -- 3 символа, меньше нельзя
