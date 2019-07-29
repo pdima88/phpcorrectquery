@@ -2887,8 +2887,8 @@ class TextCorrect
         $ruEnDiff = 0;
         $enRuDiff = 0;
         for ($i = 0; $i < strlen($s); $i++) {
-            if ($ruEnCheck[$i] != $ruEn[$i]) $ruEnDiff++;
-            if ($enRuCheck[$i] != $enRu[$i]) $enRuDiff++;
+            if (($ruEnCheck[$i] ?? '') != ($ruEn[$i] ?? '')) $ruEnDiff++;
+            if (($enRuCheck[$i] ?? '') != ($enRu[$i] ?? '')) $enRuDiff++;
         }
         if ($ruEnDiff <= $enRuDiff) return $ruEn;
         return $enRu;
