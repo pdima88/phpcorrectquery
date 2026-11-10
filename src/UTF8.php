@@ -3621,7 +3621,7 @@ class UTF8
           It's much faster than iconv_strlen()
           Note: this function does not count bad UTF-8 bytes in the string - these are simply ignored
 		*/
-        return strlen(utf8_decode($s));
+        return strlen(mb_convert_encoding($s, 'ISO-8859-1', 'UTF-8'));
 
         /*
         #slowly then strlen(utf8_decode())
@@ -4042,7 +4042,7 @@ class UTF8
         }  #speed improve
         $rows = 0;
         #utf8_decode() converts characters that are not in ISO-8859-1 to '?'
-        foreach (preg_split('/\r\n|[\r\n]/sSX', utf8_decode($s)) as $line) {
+        foreach (preg_split('/\r\n|[\r\n]/sSX', mb_convert_encoding($s, 'ISO-8859-1', 'UTF-8')) as $line) {
             $rows += ceil((strlen($line) + 1) / $cols);
             if ($rows > $max_rows) {
                 return $max_rows;
