@@ -2916,18 +2916,18 @@ class TextCorrect
         return preg_replace_callback('~(?: (?<=[^-_/]|^)
                                            (?:' . $this->ru_similar . ')++
                                            (?= (?:' . $this->en . '|[-_/])*+ (?<=[^-_/]|' . $this->en . '[-_/])
-                                               \d [\d-_/]*+ (?!' . $this->tt_uniq . ')
+                                               \d [\d_/-]*+ (?!' . $this->tt_uniq . ')
                                            )
                                          | (?<=[^-_/]|^)
                                            \d  (?:' . $this->en . '|[-_/])*+ (?<=[^-_/]|' . $this->en . '[-_/])
                                            \K
                                            (?:' . $this->ru_similar . ')++
-                                           (?= [\d-_/]*+ (?!' . $this->tt_uniq . ') )
+                                           (?= [\d_/-]*+ (?!' . $this->tt_uniq . ') )
                                        )
                                       ~sxSX', [$this, '_entry'], $s);
     }
 
-    private function _entry(array &$a)
+    private function _entry(array $a)
     {
         $entry =& $a[0];
         $s = strtr($entry, $this->table[0]);
@@ -2937,7 +2937,7 @@ class TextCorrect
         return $s;
     }
 
-    private function _word(array &$a)
+    private function _word(array $a)
     {
         $word = $a[0];
         #var_export($a);
