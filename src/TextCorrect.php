@@ -2793,7 +2793,7 @@ class TextCorrect
      *
      * @param  array|null $words_exceptions
      */
-    public function __construct(array $words_exceptions = null)
+    public function __construct(?array $words_exceptions = null)
     {
         #русский --> английский:
         $this->en_correct = '/(?: (?:' . $this->tt_f . ')
@@ -2836,7 +2836,7 @@ class TextCorrect
      *
      * @return  string|bool            Returns FALSE if error occured
      */
-    public function parse($s, $mode = self::SIMILAR_CHARS, array &$words = null)
+    public function parse($s, $mode = self::SIMILAR_CHARS, ?array &$words = null)
     {
         if (!is_string($s)) {
             return $s;
